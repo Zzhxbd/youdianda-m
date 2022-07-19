@@ -23,3 +23,35 @@ export const userInfoApi = () => {
         url: `/home/user/getUserInfo`,
     })
 }
+//修改用户信息
+export const updateUser = (data) => {
+    return request({
+        method: 'POST',
+        url: `/home/user/update`,
+        data
+    })
+}
+//更新头像
+export const updateUserAvatar = (data) => {
+    return request({
+        method: 'POST',
+        url: `/home/common/upload?type=images`,
+        data
+    })
+}
+//我的收藏
+export const mySaseOrZan = (params) => {
+    return request({
+        method: 'GET',
+        url: `/user/userDataList`,
+        params
+    })
+}
+//我的文章
+export const myArticle = (params) => {
+    return request({
+        method: 'GET',
+        url: `/user/myArticle`,
+        params
+    })
+}

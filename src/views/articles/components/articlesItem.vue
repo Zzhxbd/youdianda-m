@@ -8,7 +8,7 @@
             class="left"
             fit="cover"
             round
-            :src="'http://122.51.249.55:8060/' + articleInfo.pic"
+            :src="'http://124.223.14.236:8060/' + articleInfo.pic"
           />
           <div class="right">
             <div class="top">{{ articleInfo.author }}</div>

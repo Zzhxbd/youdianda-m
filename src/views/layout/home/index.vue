@@ -7,7 +7,7 @@
           width="100%"
           height="100%"
           fit="cover"
-          :src="'http://122.51.249.55:8060/' + obj.advimgsrc"
+          :src="'http://124.223.14.236:8060/' + obj.advimgsrc"
         />
       </van-swipe-item>
     </van-swipe>
@@ -29,7 +29,7 @@
             height="90px"
             fit="cover"
             lazy-load
-            :src="'http://122.51.249.55:8060/' + obj.pic"
+            :src="'http://124.223.14.236:8060/' + obj.pic"
           />
           <p class="title-text">{{ obj.title }}</p>
         </van-col>

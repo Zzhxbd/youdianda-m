@@ -51,6 +51,35 @@ const routes = [
     path: '/list',
     name: 'list',
     component: () => import('@/views/list')
+  },
+  {
+    path: '/revise',
+    name: 'revise',
+    component: () => import('@/views/reviseInfo')
+  },
+  {
+    path: '/save',
+    name: 'save',
+    component: () => import('@/views/save'),
+    meta: {
+      needLogin: true
+    }
+  },
+  {
+    path: '/zan',
+    name: 'zan',
+    component: () => import('@/views/zan'),
+    meta: {
+      needLogin: true
+    }
+  },
+  {
+    path: '/myarticle',
+    name: 'myarticle',
+    component: () => import('@/views/myArticle'),
+    meta: {
+      needLogin: true
+    }
   }
 
 ]

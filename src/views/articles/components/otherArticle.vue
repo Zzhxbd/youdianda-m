@@ -7,7 +7,7 @@
       <van-grid-item v-for="obj in recommend" :key="obj.id" class="grid-item" @click="$emit('otherArticle',obj.id)" >
         <div slot="default" class="default">
           <van-image
-            :src="'http://122.51.249.55:8060/' + obj.pic"
+            :src="'http://124.223.14.236:8060/' + obj.pic"
             width="120px"
             height="100px"
           />

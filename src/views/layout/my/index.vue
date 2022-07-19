@@ -2,14 +2,22 @@
   <div class="my-container">
     <van-nav-bar title="我的">
       <template #right>
-        <van-icon name="setting-o" size="18" />
+        <van-icon
+          name="setting-o"
+          size="18"
+          @click="
+            $router.push({
+              name: 'revise',
+            })
+          "
+        />
       </template>
     </van-nav-bar>
     <div class="userInfo" v-if="$store.state.token">
       <van-image
         class="avatar"
         round
-        :src="'http://122.51.249.55:8060/' + userInfo.icon"
+        :src="'http://124.223.14.236:8060/' + userInfo.icon"
       />
       <span class="text">{{ userInfo.username }}</span>
     </div>
@@ -35,13 +43,13 @@
       <van-grid-item icon="newspaper-o" text="文章" />
     </van-grid>
     <van-cell-group class="group">
-      <van-cell title="我的文章" is-link>
+      <van-cell title="我的文章" is-link to="/myarticle">
         <van-icon slot="icon" name="newspaper-o" />
       </van-cell>
-      <van-cell title="我的点赞" is-link>
+      <van-cell title="我的点赞" is-link to="/zan">
         <van-icon slot="icon" name="good-job-o" />
       </van-cell>
-      <van-cell title="我的收藏" is-link>
+      <van-cell title="我的收藏" is-link to="/save">
         <van-icon slot="icon" name="like-o" />
       </van-cell>
     </van-cell-group>

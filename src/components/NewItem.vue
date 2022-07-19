@@ -6,7 +6,7 @@
         <van-image
           width="100%"
           height="100"
-          :src="'http://122.51.249.55:8060/' + obj.pic"
+          :src="'http://124.223.14.236:8060/' + obj.pic"
         />
       </div>
       <div slot="label">
