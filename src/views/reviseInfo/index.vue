@@ -134,7 +134,7 @@ export default {
     UpdateAddress,
     UpdateNotes
   },
-  data() {
+  data () {
     return {
       user: {},
       editAvatarShow: false,
@@ -144,14 +144,14 @@ export default {
       editBirthdayShow: false,
       editAddressShow: false,
       editNotesShow: false,
-      img: null,
+      img: null
     }
   },
-  created() {
+  created () {
     this.loadUserInfo()
   },
   methods: {
-    async loadUserInfo() {
+    async loadUserInfo () {
       try {
         const { data } = await userInfoApi()
         // console.log(data)
@@ -160,13 +160,13 @@ export default {
         this.$toast('获取数据失败')
       }
     },
-    onFileChange() {
+    onFileChange () {
       const file = this.$refs.file.files[0]
       this.img = window.URL.createObjectURL(file)
       this.editAvatarShow = true
       this.$refs.file.value = ''
-    },
-  },
+    }
+  }
 }
 </script>
 

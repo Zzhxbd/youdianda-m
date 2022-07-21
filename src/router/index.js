@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import store from '@/store/index'
-import { Toast } from 'vant';
+import { Toast } from 'vant'
 Vue.use(VueRouter)
 
 const routes = [
@@ -32,7 +32,7 @@ const routes = [
         path: 'my',
         name: 'my',
         component: () => import('@/views/layout/my')
-      },
+      }
     ]
   },
   {
@@ -80,6 +80,16 @@ const routes = [
     meta: {
       needLogin: true
     }
+  },
+  {
+    path: '/404',
+    component: () => import('@/views/undefind')
+
+  },
+  {
+    path: '/*',
+    redirect: '/404'
+
   }
 
 ]
@@ -95,9 +105,9 @@ router.beforeEach((to, from, next) => {
       next()
     } else {
       router.push({
-        path: `/login`,
-        query:{
-          url:to.name
+        path: '/login',
+        query: {
+          url: to.name
         }
       }
       )
@@ -105,9 +115,7 @@ router.beforeEach((to, from, next) => {
     }
   } else {
     next()
-
   }
 })
-
 
 export default router

@@ -7,7 +7,25 @@
       finished-text="没有更多了"
       @load="onLoad"
     >
-      <NewItem :newList="newList"></NewItem>
+      <van-swipe-cell v-for="obj in newList" :key="obj.id">
+        <NewItem :newList="obj"></NewItem>
+        <template #right>
+          <van-button
+            @click="delArticle(obj.id)"
+            square
+            type="danger"
+            text="删除"
+            style="height: 100%"
+          />
+          <van-button
+            @click="$router.push({ path: `/release/?id=${obj.id}` })"
+            square
+            type="primary"
+            text="修改"
+            style="height: 100%"
+          />
+        </template>
+      </van-swipe-cell>
     </van-list>
   </div>
 </template>
@@ -15,27 +33,28 @@
 <script>
 import { myArticle } from '@/api/user'
 import NewItem from '@/components/NewItem.vue'
+import { delArticles } from '@/api/article'
 export default {
   name: 'MyArticle',
   components: {
-    NewItem,
+    NewItem
   },
-  data() {
+  data () {
     return {
       newList: [],
       loading: false,
       finished: false,
       page: 1,
-      limit: 10,
+      limit: 10
     }
   },
-  created() {},
+  created () {},
   methods: {
-    async onLoad() {
+    async onLoad () {
       try {
         const { data } = await myArticle({
           page: this.page,
-          limit: this.limit,
+          limit: this.limit
         })
         // console.log(data)
         this.newList.push(...data.data.data)
@@ -51,7 +70,22 @@ export default {
         this.$toast('数据错误')
       }
     },
-  },
+    async delArticle (id) {
+      try {
+        await delArticles({
+          id: id
+        })
+        const index = this.newList.findIndex((item) => {
+          return item.id === id
+        })
+        this.newList.splice(index, 1)
+        this.$toast.success('操作成功')
+      } catch (err) {
+        this.$toast.success('操作失败')
+        // console.log(err)
+      }
+    }
+  }
 }
 </script>
 

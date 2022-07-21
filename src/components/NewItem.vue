@@ -1,19 +1,19 @@
 <template>
   <div class="new-container">
-    <van-cell v-for="obj in newList" :key="obj.id" @click="goArticle(obj)">
-      <div slot="title">{{ obj.title }}</div>
+    <van-cell  @click="goArticle(newList)">
+      <div slot="title">{{ newList.title }}</div>
       <div slot="default">
         <van-image
           width="100%"
           height="100"
-          :src="'http://124.223.14.236:8060/' + obj.pic"
+          :src="'http://124.223.14.236:8060/' + newList.pic"
         />
       </div>
       <div slot="label">
-        <div class="van-multi-ellipsis--l2">{{ obj.description }}</div>
+        <div class="van-multi-ellipsis--l2">{{ newList.description }}</div>
         <div>
-          <span> <van-icon name="like-o" />收藏({{ obj.lovenum }}) </span>
-          <span> <van-icon name="good-job-o" />点赞({{ obj.click }}) </span>
+          <span> <van-icon name="like-o" />收藏({{ newList.lovenum }}) </span>
+          <span> <van-icon name="good-job-o" />点赞({{ newList.click }}) </span>
         </div>
       </div>
     </van-cell>
@@ -25,19 +25,20 @@ export default {
   name: 'newItem',
   props: {
     newList: {
-      type: Array,
-    },
+      type: Object,
+      required: true
+    }
   },
   methods: {
-    goArticle(obj) {
+    goArticle (obj) {
       this.$router.push({
         path: 'articles',
         query: {
-          id: obj.id,
-        },
+          id: obj.id
+        }
       })
-    },
-  },
+    }
+  }
 }
 </script>
 

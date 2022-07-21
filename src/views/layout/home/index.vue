@@ -48,7 +48,9 @@
       finished-text="没有更多了"
       @load="onLoad"
     >
-      <NewItem :newList='newList'></NewItem>
+      <div v-for="obj in newList" :key="obj.id">
+        <NewItem :newList="obj"></NewItem>
+      </div>
     </van-list>
   </div>
 </template>
@@ -57,8 +59,8 @@
 import { getIndexApi, getHotApi, getNewApi } from '@/api/home'
 import NewItem from '@/components/NewItem.vue'
 export default {
-  name: 'Home',
-  data() {
+  name: 'HomeIndex',
+  data () {
     return {
       page: 1,
       limit: 10,
@@ -66,51 +68,55 @@ export default {
       loading: false,
       finished: false,
       banners: [],
-      hotList: [],
+      hotList: []
     }
   },
   components: {
-    NewItem,
+    NewItem
   },
-  created() {
+  created () {
     this.loadGetIndex()
     this.loadGetHot()
   },
   methods: {
-    async loadGetIndex() {
+    async loadGetIndex () {
       const { data } = await getIndexApi()
       // console.log(data)
       this.banners = data.data.banner
     },
-    async loadGetHot() {
+    async loadGetHot () {
       const { data } = await getHotApi()
       // console.log(data)
       this.hotList = data.data.list
     },
-    goArticle(obj) {
+    goArticle (obj) {
       this.$router.push({
         path: 'articles',
         query: {
-          id: obj.id,
-        },
+          id: obj.id
+        }
       })
     },
-    async onLoad() {
-      const { data } = await getNewApi({
-        page: this.page,
-        limit: this.limit,
-      })
-      //   console.log(data);
-      this.newList = [...this.newList, ...data.data.list.data]
-      this.loading = false
-      if (data.data.list.data.length) {
-        this.page++
-      } else {
-        this.finished = true
+    async onLoad () {
+      try {
+        const { data } = await getNewApi({
+          page: this.page,
+          limit: this.limit
+        })
+        //   console.log(data);
+        this.newList = [...this.newList, ...data.data.list.data]
         this.loading = false
+        if (data.data.list.data.length) {
+          this.page++
+        } else {
+          this.finished = true
+          this.loading = false
+        }
+      } catch (err) {
+        console.log(err)
       }
-    },
-  },
+    }
+  }
 }
 </script>
 

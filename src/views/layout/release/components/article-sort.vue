@@ -18,21 +18,21 @@ export default {
   props: {
     value: {
       type: String,
-      required: true,
+      required: true
     },
     cateidIndex: {
       type: Number,
-      required: true,
-    },
+      required: true
+    }
   },
-  data() {
+  data () {
     return {
       columns: [],
       id: '',
-      allCate: {},
+      allCate: {}
     }
   },
-  async created() {
+  async created () {
     try {
       const { data } = await getIndexApi()
       //   console.log(data)
@@ -43,15 +43,15 @@ export default {
     }
   },
   methods: {
-    onConfirm(value, index) {
+    onConfirm (value, index) {
       const arr = this.allCate.filter((item) => item.catename === value)
       this.id = arr[0].id
       this.$emit('input', value)
       this.$emit('close')
       this.$emit('update:cateidIndex', index)
       this.$emit('update:cateid', this.id)
-    },
-  },
+    }
+  }
 }
 </script>
 
